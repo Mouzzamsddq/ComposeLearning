@@ -121,6 +121,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * In compose every thing is related to data, we don't need to update the ui again and again. we only need to
+     * update the data. In compose we are calling data as state. because if we are updating the data, the ui will change
+     * the state. so every thing we are storing in a state and when we want to perform some action, we only need to
+     * update the state. it will automatically recompose the ui.
+     */
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun inputText() {
