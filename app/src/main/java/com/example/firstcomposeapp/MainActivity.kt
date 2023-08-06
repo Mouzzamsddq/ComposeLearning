@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
@@ -112,16 +114,8 @@ class MainActivity : ComponentActivity() {
                         name = "Mouzzam Siddiqui",
                         occupation = "Software Developer",
                     )
-                    listViewItem(
-                        imageId = R.drawable.ic_person,
-                        name = "Mouzzam Siddiqui",
-                        occupation = "Software Developer",
-                    )
-                    listViewItem(
-                        imageId = R.drawable.ic_person,
-                        name = "Mouzzam Siddiqui",
-                        occupation = "Software Developer",
-                    )
+
+                    circularShapeImage()
                 }
                 Column(
                     modifier = Modifier
@@ -202,9 +196,20 @@ class MainActivity : ComponentActivity() {
         )
     }
 
+    /**
+     * With the help of modifier, we can customize built in and custom composable. The best practice is that
+     * whenever create a custom composable, in that composable always take modifier as a parameter like all built it
+     * composable are taking. So We can reuse that custom composable and customize according to our need.
+     */
+
     @Composable
-    fun listViewItem(imageId: Int, name: String, occupation: String) {
-        Row(modifier = Modifier.padding(4.dp)) {
+    fun listViewItem(
+        imageId: Int,
+        name: String,
+        occupation: String,
+        modifier: Modifier = Modifier,
+    ) {
+        Row(modifier = modifier.padding(4.dp)) {
             Image(
                 painter = painterResource(id = imageId),
                 contentDescription = "",
@@ -222,5 +227,20 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    /**
+     * Example of modifier to make square image to circular without using any lib
+     */
+    @Composable
+    fun circularShapeImage() {
+        Image(
+            painter = painterResource(id = R.drawable.ic_broken_heart),
+            contentDescription = "",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(80.dp)
+                .clip(CircleShape)
+                .border(4.dp, Color.Red, CircleShape),
+        )
     }
 }
