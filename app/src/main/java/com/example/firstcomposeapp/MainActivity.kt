@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -106,6 +107,21 @@ class MainActivity : ComponentActivity() {
                         name = "Mouzzam Siddiqui",
                         occupation = "Software Developer",
                     )
+                    listViewItem(
+                        imageId = R.drawable.ic_person,
+                        name = "Mouzzam Siddiqui",
+                        occupation = "Software Developer",
+                    )
+                    listViewItem(
+                        imageId = R.drawable.ic_person,
+                        name = "Mouzzam Siddiqui",
+                        occupation = "Software Developer",
+                    )
+                    listViewItem(
+                        imageId = R.drawable.ic_person,
+                        name = "Mouzzam Siddiqui",
+                        occupation = "Software Developer",
+                    )
                 }
                 Column(
                     modifier = Modifier
@@ -188,10 +204,11 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun listViewItem(imageId: Int, name: String, occupation: String) {
-        Row {
+        Row(modifier = Modifier.padding(4.dp)) {
             Image(
                 painter = painterResource(id = imageId),
                 contentDescription = "",
+                modifier = Modifier.size(30.dp),
             )
             Column {
                 Text(
