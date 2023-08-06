@@ -3,6 +3,7 @@ package com.example.firstcomposeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,14 +15,20 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,15 +74,27 @@ class MainActivity : ComponentActivity() {
                     Text(text = "Hello")
                     Text(text = "Hello")
                 }
-                Row(
-                    modifier = Modifier.fillMaxHeight().fillMaxWidth().background(Color.Blue),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically,
+                Column(
+                    modifier = Modifier.fillMaxHeight().fillMaxWidth().background(Color.White),
                 ) {
-                    Text(text = "Hello")
-                    Text(text = "World")
-                    Text(text = "Hello")
-                    Text(text = "Hello")
+                    Text(
+                        text = "Hello Mouzzam Nice Project",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        textAlign = TextAlign.Justify,
+                        fontStyle = FontStyle.Italic,
+                        letterSpacing = 1.sp,
+                    )
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_broken_heart),
+                        contentDescription = "Dummy Image",
+                        alignment = Alignment.CenterEnd,
+                        modifier = Modifier.height(300.dp).width(300.dp),
+                        colorFilter = ColorFilter.tint(Color.Blue),
+                        contentScale = ContentScale.FillHeight
+
+                    )
                 }
             }
         }
