@@ -7,7 +7,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,7 +42,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
                     .background(Color.Green)
                     /**
                      * diff b/w width and required width attribute
@@ -51,6 +54,11 @@ class MainActivity : ComponentActivity() {
                     .width(300.dp),
 //                    .requiredWidth(600.dp),
             ) {
+                /**
+                 * Like in our view system, we have a different layout , In the same way, to layout our composable, in jetpack compose we
+                 * have different layout composable. Column is one of the layout composable. It is used to arrange the composable in vertical manner.
+                 * basically row and column composable mimic the linear layout in the view system.
+                 */
                 Column(
                     /**
                      * In the jetpack compose, modifier execute sequentially, so we can call same method one after another, it will lead
@@ -58,7 +66,7 @@ class MainActivity : ComponentActivity() {
                      */
                     modifier = Modifier
                         .fillMaxHeight(0.5f)
-                        .background(Color.Red)
+                        .background(Color.White)
                         .fillMaxWidth()
                         .border(width = 5.dp, color = Color.Black)
                         .padding(20.dp)
@@ -75,12 +83,35 @@ class MainActivity : ComponentActivity() {
                     )
                     Spacer(modifier = Modifier.height(30.dp))
                     Text(text = "World")
-                    Text(text = "Hello")
-                    Text(text = "Hello")
-                    Text(text = "Hello")
+                    /**
+                     * In this box composable layout, we can arrange the composable like a stack , one on the top of another. It mimic the behaviour
+                     *  of the frameLayout in the view system
+                     */
+//                    Box(
+//                        contentAlignment = Alignment.BottomEnd,
+//                        modifier = Modifier.fillMaxSize(),
+//                    ) {
+//                        Image(
+//                            painter = painterResource(id = R.drawable.ic_broken_heart),
+//                            contentDescription = "Image 1",
+//                        )
+//                        Image(
+//                            painter = painterResource(id = R.drawable.ic_headphone),
+//                            contentDescription = "Image 2",
+//                        )
+//                    }
+
+                    listViewItem(
+                        imageId = R.drawable.ic_person,
+                        name = "Mouzzam Siddiqui",
+                        occupation = "Software Developer",
+                    )
                 }
                 Column(
-                    modifier = Modifier.fillMaxHeight().fillMaxWidth().background(Color.White),
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth()
+                        .background(Color.White),
                 ) {
                     Text(
                         text = "Hello Mouzzam Nice Project",
@@ -115,6 +146,18 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     inputText()
+                    /**
+                     * Row is also one of the composable layout which mimic the linear layout in view system. It is used to arrange the composable
+                     * horizontally.
+                     */
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxSize(),
+                    ) {
+                        Text(text = "Row 1 ")
+                        Text(text = "Row 2 ")
+                    }
                 }
             }
         }
@@ -141,5 +184,26 @@ class MainActivity : ComponentActivity() {
                 Text(text = "Enter message")
             },
         )
+    }
+
+    @Composable
+    fun listViewItem(imageId: Int, name: String, occupation: String) {
+        Row {
+            Image(
+                painter = painterResource(id = imageId),
+                contentDescription = "",
+            )
+            Column {
+                Text(
+                    text = name,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = occupation,
+                    fontWeight = FontWeight.Thin,
+                    fontSize = 12.sp,
+                )
+            }
+        }
     }
 }
